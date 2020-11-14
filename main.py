@@ -21,11 +21,11 @@ class BinaryHeap:
     def _up_heap(self, i):
         if i > 0:
             key = self.heap[i]
-            parent = int(i / 2)
+            parent = i // 2
             while (parent > 0) and (self.heap[parent][1] > key[1]):
                 self.heap[i] = self.heap[parent]
                 i = parent
-                parent = int(parent / 2)
+                parent = parent // 2
             self.heap[i] = key
 
     def _down_heap(self, i):
@@ -40,19 +40,6 @@ class BinaryHeap:
         if minimum != i:
             self.heap[i], self.heap[minimum] = self.heap[minimum], self.heap[i]
             self._down_heap(minimum)
-
-    def update(self, e, p):
-        for counter, value in enumerate(self.heap):
-            if value[0] == e:
-                value[1] = p
-                self._up_heap(counter)
-                break
-
-    def is_present(self, v):
-        for value in self.heap:
-            if value[0] == v:
-                return True
-        return False
 
 
 def find_vertex(e, data):
@@ -78,7 +65,7 @@ def Prim(data, start):
     return tree
 
 
-graph = [
+graph1 = [
     (0, [(3, 13), (2, 13), (1, 24), (4, 22)]),
     (1, [(3, 13), (0, 24), (2, 22), (4, 13)]),
     (2, [(0, 13), (3, 19), (1, 22), (4, 14)]),
